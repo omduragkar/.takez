@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useDispatch } from 'react-redux';
 import { userSignup } from '../../redux/actions/userActions';
+import { changeError } from '../../redux/reducers/LoadingReducers';
 
 const Signup = () => {
   const [vis, setVis] = useState(false);
@@ -14,7 +15,14 @@ const Signup = () => {
   } 
   const signup = ()=>{
     console.log(data);
-    dispatch(userSignup(data));
+    if(!data.name || !data.email || !data.password || !data.confirmPassword){
+      dispatch(changeError({
+        error:true,
+        message:"Please fill all the details"
+      }))
+    }else{
+      dispatch(userSignup(data));
+    }
   }
   
   return (

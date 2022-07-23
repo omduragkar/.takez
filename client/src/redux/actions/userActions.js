@@ -11,24 +11,37 @@ let data = savedData?JSON.parse(savedData):require('../../json/user.json');
 export const userSignup = (userData)=>async (dispatch)=>{
     dispatch(changeloading(true));
     const id = uuidv4();
-    let savingData = JSON.stringify(
-        {
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+    if(!re.test(userData.email)){
+        dispatch(changeloading(false));
+        dispatch(changeError({
+            message:"Email not valid!",
+            type:"email",
+            error:true,
+        }));
+        
+    }else{
+
+        let savingData = JSON.stringify(
+            {
+                name:userData.name,
+                email:userData.email,
+                password:userData.password,
+                userId:id,
+            });
+            savingData = JSON.parse(savingData)
+            data = [savingData, ...data];
+        localStorage.setItem("userData", JSON.stringify(data));
+        localStorage.setItem("user", JSON.stringify(savingData));
+        dispatch(setUser({
+            userId:id,
             name:userData.name,
             email:userData.email,
-            password:userData.password,
-            userId:id,
-        });
-    savingData = JSON.parse(savingData)
-    data = [savingData, ...data];
-    localStorage.setItem("userData", JSON.stringify(data));
-    localStorage.setItem("user", JSON.stringify(savingData));
-    dispatch(setUser({
-        userId:id,
-        name:userData.name,
-        email:userData.email,
-        isLogin:true
-    }))
-    dispatch(changeloading(false));
+            isLogin:true
+        }))
+        dispatch(changeloading(false));
+    }
 }
 
 
@@ -46,18 +59,23 @@ export const userLogin =  (userData)=>async (dispatch)=>{
                 email:recievedata[0].email,
                 isLogin:true
             }))
-
+            dispatch(changeError({
+                error:false,
+            }));
         }else{
             dispatch(changeError({
-                status:"Wrong email and/or Password",
-                type:"password"
+                message:"Pasword not valid!",
+                type:"Pasword",
+                error:true,
+                
             }));
             
         }
     }else{
         dispatch(changeError({
-            status:"User not created!",
-            type:"email"
+            message:"User not created!",
+            type:"email",
+            error:true,
         }));
         
         

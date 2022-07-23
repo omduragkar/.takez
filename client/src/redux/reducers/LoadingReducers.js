@@ -15,7 +15,7 @@ const loadingReducers = createSlice({
         state.loading = action.payload
       },
       changeError: (state, action) => {
-        state.error = action.payload.err;
+        state.error = action.payload.error;
         state.message = action.payload.message
         state.type = action.payload.type
       },
