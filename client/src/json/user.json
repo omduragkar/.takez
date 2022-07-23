@@ -1,0 +1,17 @@
+[
+    {
+        "_id" : "62dbd89cbe27deed509a9cd5",
+        "name" : "Test 2",
+        "email" : "test@test.com",
+        "password" : "12345678",
+        "avatar" : "https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"
+    },
+    {
+        "_id" : "62dbd89cbe27deed509a9ce4",
+        "name" : "Om Duragkar",
+        "email" : "test@one.com",
+        "password" : "12345678",
+        "avatar" : "https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"
+    }
+
+]

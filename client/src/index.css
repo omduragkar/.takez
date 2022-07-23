@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.btn{
+  @apply bg-green-400 p-1 px-3 rounded-md font-medium shadow-md cursor-pointer text-white
+  
+}
+.btn:hover{
+  @apply bg-green-500 shadow-xl font-medium 
+}
+.btn:active{
+  @apply scale-105
+}
+
+.headmain{
+  @apply text-4xl font-bold
+
+}
+
+
+.leftPaneldivs{
+  @apply flex  text-slate-600 font-semibold p-3 px-10 cursor-pointer hover:bg-slate-100 w-full gap-5 hover:text-black hover:border-r-4 hover:border-green-300
+}
+
+
+.activeLeftPanel{
+  @apply bg-slate-200 text-black border-r-4 border-green-400
+
+}
+
+
+.outlinebtn{
+  @apply bg-slate-200 text-green-500 rounded-lg font-bold text-xl py-1 shadow-md
+}
+.outlinebtn:hover{
+  @apply bg-slate-300 shadow-lg
+}
+.outlinebtn:active{
+  @apply scale-105
+}
